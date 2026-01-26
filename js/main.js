@@ -1,53 +1,108 @@
-let registro = true
+const registros = [
+    {
+        img: "./img/manzana.png",
+        nombre: "Frutas",
+        texto: "¿Consumio Frutas?"
+    },
+    {
+        img: "./img/brocoli.png",
+        nombre: "Verduras",
+        texto: "¿Consumio Verduras?"
+    }
+]
 
-while (registro) {
-    let nombre = prompt("Ingrese su nombre")
-    let agua = prompt("Cuanta cantidad de agua tomo hoy? (en litros)")
-    let entrenar = prompt("Ingrese las horas que entreno hoy")
-    let dormir = prompt("Ingrese cuantas horas durmio")
-    let frutas = prompt("Comio frutas hoy? (si/no)").toLowerCase()
-    let verduras = prompt("Comio verduras hoy? (si/no)").toLowerCase()
+const cosas = [
+    {
+        img: "./img/pesa.png",
+        nombre: "Entreno",
+        texto: "¿Cuantas horas entreno?"
+    },
+    {
+        img: "./img/agua.png",
+        nombre: "Agua",
+        texto: "¿Cuantos litros de agua consumiste?"
+    },
+    {
+        img: "./img/descanso.png",
+        nombre: "Descanso",
+        texto: "¿Cuantas horas descanso?"
+    }
+]
 
-    if (frutas == "si") {
-        frutas = "comió frutas"
-    } else {
-        frutas = "no comió frutas"
+let opcionesUno = document.getElementById("registros")
+
+registros.forEach(registro => {
+    let card = document.createElement("div")
+    card.className = "div"
+    card.innerHTML = `<div class="contenedor">
+                            <img src=${registro.img} alt="">
+                            <h2>${registro.nombre}</h2>
+                            <h3>${registro.texto}</h3>
+                        </div>
+                        <div class="imput">
+                            <h2 class="SiNo">No</h2>
+                            <input class="boton" type="checkbox">
+                        </div>`
+
+    const SiNo = card.querySelector(".SiNo")
+    const boton = card.querySelector(".boton")
+
+    boton.onchange = () => {
+        if (boton.checked) {
+            SiNo.textContent = "Sí"
+        } else {
+            SiNo.textContent = "No"
+        }
     }
 
-    if (verduras == "si") {
-        verduras = "comió verduras"
-    } else {
-        verduras = "no comió verduras"
+    opcionesUno.appendChild(card)
+})
+
+cosas.forEach(cosa => {
+    let carta = document.createElement("div")
+    carta.className = "div"
+    carta.innerHTML = `<div class="contenedor">
+                            <img src=${cosa.img} alt="">
+                            <h2>${cosa.nombre}</h2>
+                            <h3>${cosa.texto}</h3>
+                        </div>
+                        <div class="imput">
+                            <button class="menos">-</button>
+                            <span class="counter">0</span>
+                            <button class="mas">+</button>
+                        </div>`
+
+    const counter = carta.querySelector(".counter")
+    const sumar = carta.querySelector(".mas")
+    const restar = carta.querySelector(".menos")
+    let contador = 0
+
+    sumar.addEventListener("click", clickSumar)
+    function clickSumar() {
+        contador++
+        counter.innerHTML = contador
     }
 
-    console.log(nombre + " tomo " + agua + " litros de agua y entreno " + entrenar + " hs. Durmio " + dormir + " hs, " + frutas + " y " + verduras)
-
-    let confirmacion = prompt("Desea hacer otro registro? (si/no)").toLowerCase()
-    if (confirmacion == "no"){
-        registro = false
-        console.log("Muchas gracias!");
+    restar.addEventListener("click", clickRestar)
+    function clickRestar() {
+        contador--
+        counter.innerHTML = contador
     }
+
+    opcionesUno.appendChild(carta)
+
+})
+
+let botonNombre = document.getElementById("botonNombre")
+let textInput = document.getElementById("text")
+let contenedor = document.getElementById("uno")
+let bienvenida = document.createElement("h2")
+
+contenedor.appendChild(bienvenida)
+botonNombre.addEventListener("click", clickNombre)
+function clickNombre() {
+    let nombreUsuario = textInput.value
+    bienvenida.textContent = `Bienvenida/o ${nombreUsuario}!`
 }
 
-function dias(ayer, hoy) {
-    let suma = ayer + hoy
-    console.log(suma + " Litros de agua")
-}
 
-dias(4, 10)
-
-const items =["hidratacion", "entreno", "descanso", "frutas", "verduras"]
-
-items.push("alcohol")
-
-let agregar= prompt("Ingrese otro dato que quisiera registrar")
-
-items.push(agregar)
-
-items.sort()
-
-//console.log(items.join (" - "))
-
-for (const item of items){
-    console.log("Dato: "+ item)
-}

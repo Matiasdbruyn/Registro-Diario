@@ -6,3 +6,189 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: rgb(54, 70, 62);
+}
+
+header {
+    display: flex;
+    flex-direction: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 150px;
+    height: 5vh;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .menu .btn-primary {
+    background-color: rgb(54, 70, 62);
+    border: none;
+}
+
+header .menu .btn-primary img {
+    width: 25px;
+    height: 25px;
+}
+
+header .menu .offcanvas .offcanvas-body ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    list-style: none;
+    margin: 0;
+    padding-left: 30px;
+}
+
+header .menu .offcanvas .offcanvas-body ul li {
+    padding-top: 15px;
+    transition-duration: 0.5s;
+}
+
+header .menu .offcanvas .offcanvas-body ul li a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.582);
+    font-size: 25px;
+    font-weight: 600;
+    transition-duration: 0.5s;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: 600;
+    color: black;
+    text-decoration: none;
+}
+
+#uno {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 15vh;
+}
+
+#uno div #text {
+    width: 170px;
+    height: 25px;
+    border-radius: 10px;
+    border: none;
+    font-family: "Zalando Sans SemiExpanded";
+    background-color: #ffffffc9;
+}
+
+#uno div #botonNombre {
+    width: 90px;
+    height: 25px;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: "Zalando Sans SemiExpanded";
+    border: none;
+    color: #fff;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+#uno h2 {
+    padding-top: 10px;
+    text-align: center;
+    font-family: "Zalando Sans SemiExpanded";
+    font-size: 50px;
+    font-weight: 500;
+    color: #fff;
+}
+
+#registros {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 75vh;
+}
+
+#registros .div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.253);
+    width: 18%;
+    height: 40%;
+}
+
+#registros .div .contenedor img {
+    width: 50px;
+    height: 50px;
+}
+
+#registros .div .contenedor {
+    width: 80%;
+}
+
+#registros .div .contenedor h2 {
+    font-family: "Zalando Sans SemiExpanded";
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#registros .div .contenedor h3 {
+    font-family: "Zalando Sans SemiExpanded";
+    font-size: 15px;
+    font-weight: 100;
+}
+
+#registros .div .imput {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+}
+
+#registros .div .imput h2 {
+    font-family: "Zalando Sans SemiExpanded";
+    font-size: 25px;
+    font-weight: 100;
+}
+
+#registros .div .imput .boton {
+    width: 20px;
+    height: 20px;
+}
+
+#registros .div .imput .menos{
+    font-family: "Zalando Sans SemiExpanded";
+    border: none;
+    background-color: transparent;
+    font-size: 30px;
+    font-weight: 100;
+}
+
+#registros .div .imput .counter{
+    font-family: "Zalando Sans SemiExpanded";
+    font-size: 25px;
+    font-weight: 100;
+}
+
+#registros .div .imput .mas{
+    font-family: "Zalando Sans SemiExpanded";
+    border: none;
+    background-color: transparent;
+    font-size: 30px;
+    font-weight: 100;
+}
+
+footer {
+    height: 5vh;
+}
+
+footer h2 {
+    color: #fff;
+    font-family: "Zalando Sans SemiExpanded";
+    padding-top: 5px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 100;
+}
