@@ -119,5 +119,4 @@ let guardar = document.getElementById("guardar")
 guardar.addEventListener("click", clickGuardar)
 function clickGuardar() {
     localStorage.setItem("catalogos", JSON.stringify(catalogos))
-    console.log(catalogos)
 }
