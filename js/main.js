@@ -1,11 +1,11 @@
-const catalogos = [
-    { dia: ""},
-    { frutas: false },
-    { verduras: false },
-    { entreno: 0 },
-    { agua: 0 },
-    { descanso: 0 },
-]
+let registroDelDia = {
+    dia: "",
+    frutas: false,
+    verduras: false,
+    entreno: 0,
+    agua: 0,
+    descanso: 0
+}
 
 const registros = [
     {
@@ -57,12 +57,14 @@ registros.forEach(registro => {
     const boton = card.querySelector(".boton")
 
     boton.onchange = () => {
-        if (boton.checked) {
-            SiNo.textContent = "Sí"
-        } else {
-            SiNo.textContent = "No"
-        }
+    if (boton.checked) {
+        SiNo.innerHTML = "Sí"
+        registroDelDia[registro.nombre.toLowerCase()] = true
+    } else {
+        SiNo.innerHTML = "No"
+        registroDelDia[registro.nombre.toLowerCase()] = false
     }
+}
 
     opcionesUno.appendChild(card)
 })
@@ -86,17 +88,19 @@ cosas.forEach(cosa => {
     const restar = carta.querySelector(".menos")
     let contador = 0
 
-    sumar.addEventListener("click", clickSumar)
-    function clickSumar() {
-        contador++
-        counter.innerHTML = contador
-    }
+    sumar.addEventListener("click", () => {
+    contador++
+    counter.innerHTML = contador
+    registroDelDia[cosa.nombre.toLowerCase()] = contador
+})
 
-    restar.addEventListener("click", clickRestar)
-    function clickRestar() {
+restar.addEventListener("click", () => {
+    if (contador > 0) {
         contador--
         counter.innerHTML = contador
+        registroDelDia[cosa.nombre.toLowerCase()] = contador
     }
+})
 
     opcionesUno.appendChild(carta)
 
@@ -108,15 +112,19 @@ let contenedor = document.getElementById("uno")
 let bienvenida = document.createElement("h2")
 
 contenedor.appendChild(bienvenida)
-botonNombre.addEventListener("click", clickNombre)
-function clickNombre() {
-    let nombreUsuario = textInput.value
-    bienvenida.textContent = `Registro del día: ${nombreUsuario}`
-}
+
+botonNombre.addEventListener("click", () => {
+    registroDelDia.dia = textInput.value
+    bienvenida.textContent = `Registro del día: ${textInput.value}`
+})
 
 let guardar = document.getElementById("guardar")
 
-guardar.addEventListener("click", clickGuardar)
-function clickGuardar() {
+guardar.addEventListener("click", () => {
+
+    let catalogos = JSON.parse(localStorage.getItem("catalogos"))
+
+    catalogos.push(registroDelDia)
+
     localStorage.setItem("catalogos", JSON.stringify(catalogos))
-}
+})
