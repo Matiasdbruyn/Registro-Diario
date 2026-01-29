@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="./js/main.js"></script>
+    <script defer src="../js/registro.js"></script>
     <title>Registro Diario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/estilos.css">
+    <link rel="stylesheet" href="../css/estilos.css">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
         <div class="menu">
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><img
-                    src="./img/menu.png" alt=""></button>
+                    src="../img/menu.png" alt=""></button>
             <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
                 aria-labelledby="offcanvasWithBothOptionsLabel">
                 <div class="offcanvas-header">
@@ -24,24 +24,15 @@
                 </div>
                 <div class="offcanvas-body">
                     <ul>
-                        <li><a href="index.html">Página principal</a></li>
-                        <li><a href="pages/registros.html">Registros</a></li>
+                        <li><a href="../index.html">Página principal</a></li>
+                        <li><a href="./registros.html">Registros</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </header>
     <main>
-        <section id="uno">
-            <div>
-                <input id="text" type="date">
-                <button id="botonNombre">Aceptar</button>
-            </div>
-        </section>
-        <section id="registros"></section>
-        <section id="aceptar">
-            <button id="guardar">Registrar</button>
-        </section>
+        <section id="cajaResumen"></section>
     </main>
     <footer>
         <h2>"Todos los derechos reservados ©" Matias N. De Bruyn</h2>

@@ -1,13 +1,22 @@
+const catalogos = [
+    { dia: ""},
+    { frutas: false },
+    { verduras: false },
+    { entreno: 0 },
+    { agua: 0 },
+    { descanso: 0 },
+]
+
 const registros = [
     {
         img: "./img/manzana.png",
         nombre: "Frutas",
-        texto: "¿Consumio Frutas?"
+        texto: "¿Consumió Frutas?"
     },
     {
         img: "./img/brocoli.png",
         nombre: "Verduras",
-        texto: "¿Consumio Verduras?"
+        texto: "¿Consumió Verduras?"
     }
 ]
 
@@ -20,7 +29,7 @@ const cosas = [
     {
         img: "./img/agua.png",
         nombre: "Agua",
-        texto: "¿Cuantos litros de agua consumiste?"
+        texto: "¿Cuantos litros de agua consumió?"
     },
     {
         img: "./img/descanso.png",
@@ -102,7 +111,13 @@ contenedor.appendChild(bienvenida)
 botonNombre.addEventListener("click", clickNombre)
 function clickNombre() {
     let nombreUsuario = textInput.value
-    bienvenida.textContent = `Bienvenida/o ${nombreUsuario}!`
+    bienvenida.textContent = `Registro del día: ${nombreUsuario}`
 }
 
+let guardar = document.getElementById("guardar")
 
+guardar.addEventListener("click", clickGuardar)
+function clickGuardar() {
+    localStorage.setItem("catalogos", JSON.stringify(catalogos))
+    console.log(catalogos)
+}
