@@ -24,19 +24,15 @@ function renderRegistro(catalogoItems) {
             .then(() => {
                 const devolucionBien = document.createElement("div")
                 devolucionBien.className = "devolucionBien"
-                devolucionBien.innerHTML = `
-                    <h2>Habitos saludables</h2>
-                    <img src="../img/correcto.png">
-                `
+                devolucionBien.innerHTML = `<h2>Habitos saludables</h2>
+                                            <img src="../img/correcto.png">`
                 resumenDatos.appendChild(devolucionBien)
             })
             .catch(() => {
                 const devolucionMal = document.createElement("div")
                 devolucionMal.className = "devolucionMal"
-                devolucionMal.innerHTML = `
-                    <h2>Habitos no saludables</h2>
-                    <img src="../img/mal.png">
-                `
+                devolucionMal.innerHTML = `<h2>Habitos no saludables</h2>
+                                            <img src="../img/mal.png">`
                 resumenDatos.appendChild(devolucionMal)
             })
 

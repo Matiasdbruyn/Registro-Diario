@@ -16,7 +16,7 @@ function obtenerData() {
             renderizarRegistro(data.registros)
             renderizarCosas(data.cosas)
         })
-        .catch(err => Swal.fire("Hubo un error"))
+        .catch(err => Swal.fire("Hubo un error: "+ err))
 }
 obtenerData()
 
@@ -32,7 +32,7 @@ function renderizarRegistro(registros) {
                             <h3>${registro.texto}</h3>
                         </div>
                         <div class="informacion">
-                            <img class="signointe" src=../img/interrogacion.png>
+                            <img class="signointe" src=./img/interrogacion.png>
                         </div>
                         <div class="imput">
                             <h2 class="SiNo">No</h2>
@@ -52,6 +52,19 @@ function renderizarRegistro(registros) {
             }
         }
 
+        const signo = card.querySelector(".signointe")
+
+        signo.addEventListener("click", () => {
+            Swal.fire({
+                title: "Recomendaciones Diarias",
+                text: "Ingerir al menos 400-500 gramos diarios",
+                text: "Ingerir al menos 400-500 gramos diarios",
+                text: "Realizar al menos 30 minutos de actividad física",
+                text: "Tomar agua de 2 a 3 litros diarios",
+                text: "Descansar entre 7 y 9 horas diarias",
+            });
+        })
+
         opcionesUno.appendChild(card)
     })
 }
@@ -66,7 +79,7 @@ function renderizarCosas(cosas) {
                             <h3>${cosa.horas}</h3>
                         </div>
                         <div class="informacion">
-                            <img class="signointe" src=../img/interrogacion.png>
+                            <img class="signointe" src=./img/interrogacion.png>
                         </div>
                         <div class="imput">
                             <button class="menos">-</button>
@@ -93,20 +106,25 @@ function renderizarCosas(cosas) {
             }
         })
 
-        /*const signointe = carta.querySelector(".signointe")
+        const signointe = carta.querySelector(".signointe")
 
         signointe.addEventListener("click", () => {
             Swal.fire({
-                title: "The Internet?",
-                text: "That thing is still around?",
-                icon: "question"
+                title: "Recomendaciones Diarias",
+                text: "Ingerir al menos 400-500 gramos diarios",
+                text: "Ingerir al menos 400-500 gramos diarios",
+                text: "Realizar al menos 30 minutos de actividad física",
+                text: "Tomar agua de 2 a 3 litros diarios",
+                text: "Descansar entre 7 y 9 horas diarias"
             });
-        })*/
+        })
 
         opcionesUno.appendChild(carta)
 
     })
 }
+
+
 
 let botonNombre = document.getElementById("botonNombre")
 let textInput = document.getElementById("text")

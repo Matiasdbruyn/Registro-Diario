@@ -128,14 +128,15 @@ header .logo {
 
 #registros .div .informacion {
     position: absolute;
-    left: 300px;
-    top: 15px;
+    right: 10px;
+    top: 10px;
     margin: 0;
 }
 
 #registros .div .informacion .signointe{
     width: 22px;
     height: 25px;
+    cursor: pointer;
 }
 
 #registros .div .contenedor img {
