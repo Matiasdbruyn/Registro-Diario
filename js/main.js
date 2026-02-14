@@ -7,75 +7,66 @@ let registroDelDia = {
     descanso: 0
 }
 
-const registros = [
-    {
-        img: "./img/manzana.png",
-        nombre: "Frutas",
-        texto: "¿Consumió Frutas?"
-    },
-    {
-        img: "./img/brocoli.png",
-        nombre: "Verduras",
-        texto: "¿Consumió Verduras?"
-    }
-]
+const URL = "./db/data.json"
 
-const cosas = [
-    {
-        img: "./img/pesa.png",
-        nombre: "Entreno",
-        texto: "¿Cuantas horas entreno?"
-    },
-    {
-        img: "./img/agua.png",
-        nombre: "Agua",
-        texto: "¿Cuantos litros de agua consumió?"
-    },
-    {
-        img: "./img/descanso.png",
-        nombre: "Descanso",
-        texto: "¿Cuantas horas descanso?"
-    }
-]
+function obtenerData() {
+    fetch(URL)
+        .then(response => response.json())
+        .then(data => {
+            renderizarRegistro(data.registros)
+            renderizarCosas(data.cosas)
+        })
+        .catch(err => Swal.fire("Hubo un error"))
+}
+obtenerData()
 
 let opcionesUno = document.getElementById("registros")
 
-registros.forEach(registro => {
-    let card = document.createElement("div")
-    card.className = "div"
-    card.innerHTML = `<div class="contenedor">
+function renderizarRegistro(registros) {
+    registros.forEach(registro => {
+        let card = document.createElement("div")
+        card.className = "div"
+        card.innerHTML = `<div class="contenedor">
                             <img src=${registro.img} alt="">
                             <h2>${registro.nombre}</h2>
                             <h3>${registro.texto}</h3>
+                        </div>
+                        <div class="informacion">
+                            <img class="signointe" src=../img/interrogacion.png>
                         </div>
                         <div class="imput">
                             <h2 class="SiNo">No</h2>
                             <input class="boton" type="checkbox">
                         </div>`
 
-    const SiNo = card.querySelector(".SiNo")
-    const boton = card.querySelector(".boton")
+        const SiNo = card.querySelector(".SiNo")
+        const boton = card.querySelector(".boton")
 
-    boton.onchange = () => {
-    if (boton.checked) {
-        SiNo.innerHTML = "Sí"
-        registroDelDia[registro.nombre.toLowerCase()] = true
-    } else {
-        SiNo.innerHTML = "No"
-        registroDelDia[registro.nombre.toLowerCase()] = false
-    }
+        boton.onchange = () => {
+            if (boton.checked) {
+                SiNo.innerHTML = "Sí"
+                registroDelDia[registro.nombre.toLowerCase()] = true
+            } else {
+                SiNo.innerHTML = "No"
+                registroDelDia[registro.nombre.toLowerCase()] = false
+            }
+        }
+
+        opcionesUno.appendChild(card)
+    })
 }
 
-    opcionesUno.appendChild(card)
-})
-
-cosas.forEach(cosa => {
-    let carta = document.createElement("div")
-    carta.className = "div"
-    carta.innerHTML = `<div class="contenedor">
+function renderizarCosas(cosas) {
+    cosas.forEach(cosa => {
+        let carta = document.createElement("div")
+        carta.className = "div"
+        carta.innerHTML = `<div class="contenedor">
                             <img src=${cosa.img} alt="">
-                            <h2>${cosa.nombre}</h2>
-                            <h3>${cosa.texto}</h3>
+                            <h2>${cosa.titulo}</h2>
+                            <h3>${cosa.horas}</h3>
+                        </div>
+                        <div class="informacion">
+                            <img class="signointe" src=../img/interrogacion.png>
                         </div>
                         <div class="imput">
                             <button class="menos">-</button>
@@ -83,28 +74,39 @@ cosas.forEach(cosa => {
                             <button class="mas">+</button>
                         </div>`
 
-    const counter = carta.querySelector(".counter")
-    const sumar = carta.querySelector(".mas")
-    const restar = carta.querySelector(".menos")
-    let contador = 0
+        const counter = carta.querySelector(".counter")
+        const sumar = carta.querySelector(".mas")
+        const restar = carta.querySelector(".menos")
+        let contador = 0
 
-    sumar.addEventListener("click", () => {
-    contador++
-    counter.innerHTML = contador
-    registroDelDia[cosa.nombre.toLowerCase()] = contador
-})
+        sumar.addEventListener("click", () => {
+            contador++
+            counter.innerHTML = contador
+            registroDelDia[cosa.titulo.toLowerCase()] = contador
+        })
 
-restar.addEventListener("click", () => {
-    if (contador > 0) {
-        contador--
-        counter.innerHTML = contador
-        registroDelDia[cosa.nombre.toLowerCase()] = contador
-    }
-})
+        restar.addEventListener("click", () => {
+            if (contador > 0) {
+                contador--
+                counter.innerHTML = contador
+                registroDelDia[cosa.titulo.toLowerCase()] = contador
+            }
+        })
 
-    opcionesUno.appendChild(carta)
+        /*const signointe = carta.querySelector(".signointe")
 
-})
+        signointe.addEventListener("click", () => {
+            Swal.fire({
+                title: "The Internet?",
+                text: "That thing is still around?",
+                icon: "question"
+            });
+        })*/
+
+        opcionesUno.appendChild(carta)
+
+    })
+}
 
 let botonNombre = document.getElementById("botonNombre")
 let textInput = document.getElementById("text")
@@ -122,9 +124,24 @@ let guardar = document.getElementById("guardar")
 
 guardar.addEventListener("click", () => {
 
-    let catalogos = JSON.parse(localStorage.getItem("catalogos"))
+    if (registroDelDia.dia == "") {
+        Swal.fire({
+            title: "Falta indicar la fecha del registro",
+            icon: "error"
+        });
+    }
+    else {
+        registroDelDia.dia = textInput.value
 
-    catalogos.push(registroDelDia)
+        Swal.fire({
+            title: "Perfecto, guardaste tu registro",
+            icon: "success"
+        });
 
-    localStorage.setItem("catalogos", JSON.stringify(catalogos))
+        let Catalogos = JSON.parse(localStorage.getItem("Catalogos")) || []
+
+        Catalogos.push(registroDelDia)
+
+        localStorage.setItem("Catalogos", JSON.stringify(Catalogos))
+    }
 })

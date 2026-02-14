@@ -1,0 +1,32 @@
+{
+    "registros":[
+        {
+            "img": "./img/manzana.png",
+            "nombre": "Frutas",
+            "texto": "¿Consumió Frutas?"
+        },
+        {
+            "img": "./img/brocoli.png",
+            "nombre": "Verduras",
+            "texto": "¿Consumió Verduras?"
+        }
+    ],
+
+    "cosas":[
+        {
+            "img": "./img/pesa.png",
+            "titulo": "Entreno",
+            "horas": "¿Cuantas horas entreno?"
+        },
+        {
+            "img": "./img/agua.png",
+            "titulo": "Agua",
+            "horas": "¿Cuantos litros de agua consumió?"
+        },
+        {
+            "img": "./img/descanso.png",
+            "titulo": "Descanso",
+            "horas": "¿Cuantas horas descanso?"
+        }
+    ]
+}
