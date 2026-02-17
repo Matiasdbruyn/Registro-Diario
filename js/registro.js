@@ -36,12 +36,12 @@ function renderRegistro(catalogoItems) {
                 resumenDatos.appendChild(devolucionMal)
             })
 
-        contenedorRegistro.appendChild(cart)
-
         setTimeout(() => {
             cart.remove()
-            Swal.fire(`Ya paso una semana de los registros: ${Catalogo.dia}`)
-        }, 2000000)
+            Swal.fire(`Ya paso un tiempo del registro: ${Catalogo.dia}`)
+        }, 3000)
+
+        contenedorRegistro.appendChild(cart)
 
     })
 }
@@ -54,7 +54,7 @@ function evaluarRegistro(registro) {
             registro.frutas === true &&
             registro.verduras === true &&
             registro.descanso >= 8 &&
-            registro.entreno >= 1.5 &&
+            registro.entreno >= 1 &&
             registro.agua >= 2
         ) {
             resolve()

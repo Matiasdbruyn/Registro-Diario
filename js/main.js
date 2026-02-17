@@ -4,7 +4,7 @@ let registroDelDia = {
     verduras: false,
     entreno: 0,
     agua: 0,
-    descanso: 0
+    descanso: 0,
 }
 
 const URL = "./db/data.json"
@@ -16,7 +16,7 @@ function obtenerData() {
             renderizarRegistro(data.registros)
             renderizarCosas(data.cosas)
         })
-        .catch(err => Swal.fire("Hubo un error: "+ err))
+        .catch(err => Swal.fire("Hubo un error: " + err))
 }
 obtenerData()
 
@@ -57,11 +57,12 @@ function renderizarRegistro(registros) {
         signo.addEventListener("click", () => {
             Swal.fire({
                 title: "Recomendaciones Diarias",
-                text: "Ingerir al menos 400-500 gramos diarios",
-                text: "Ingerir al menos 400-500 gramos diarios",
-                text: "Realizar al menos 30 minutos de actividad física",
-                text: "Tomar agua de 2 a 3 litros diarios",
-                text: "Descansar entre 7 y 9 horas diarias",
+                html:  `<ul style="text-align:left;">
+                            <li>Ingerir al menos 400-500 gramos diarios</li>
+                            <li>Realizar al menos 1 hora de actividad física</li>
+                            <li>Tomar agua de 2 litros diarios</li>
+                            <li>Descansar 8 horas diarias</li>
+                        </ul>`
             });
         })
 
@@ -111,11 +112,12 @@ function renderizarCosas(cosas) {
         signointe.addEventListener("click", () => {
             Swal.fire({
                 title: "Recomendaciones Diarias",
-                text: "Ingerir al menos 400-500 gramos diarios",
-                text: "Ingerir al menos 400-500 gramos diarios",
-                text: "Realizar al menos 30 minutos de actividad física",
-                text: "Tomar agua de 2 a 3 litros diarios",
-                text: "Descansar entre 7 y 9 horas diarias"
+                html:  `<ul style="text-align:left;">
+                            <li>Ingerir al menos 400-500 gramos diarios</li>
+                            <li>Realizar al menos 1 hora y 30 minutos de actividad física</li>
+                            <li>Tomar agua de 2 litros diarios</li>
+                            <li>Descansar 8 horas diarias</li>
+                        </ul>`
             });
         })
 
@@ -123,8 +125,6 @@ function renderizarCosas(cosas) {
 
     })
 }
-
-
 
 let botonNombre = document.getElementById("botonNombre")
 let textInput = document.getElementById("text")
