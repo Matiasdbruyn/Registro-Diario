@@ -5,6 +5,7 @@ let registroDelDia = {
     entreno: 0,
     agua: 0,
     descanso: 0,
+    creadoEn: Date.now()
 }
 
 const URL = "./db/data.json"
@@ -19,6 +20,16 @@ function obtenerData() {
         .catch(err => Swal.fire("Hubo un error: " + err))
 }
 obtenerData()
+
+const inputFecha = document.getElementById("text");
+
+const hoy = new Date();
+const hace7Dias = new Date();
+
+hace7Dias.setDate(hoy.getDate() - 7);
+
+inputFecha.max = hoy.toISOString().split("T")[0];
+inputFecha.min = hace7Dias.toISOString().split("T")[0];
 
 let opcionesUno = document.getElementById("registros")
 
@@ -151,15 +162,17 @@ guardar.addEventListener("click", () => {
     else {
         registroDelDia.dia = textInput.value
 
-        Swal.fire({
-            title: "Perfecto, guardaste tu registro",
-            icon: "success"
-        });
+        registroDelDia.creadoEn = Date.now();
 
         let Catalogos = JSON.parse(localStorage.getItem("Catalogos")) || []
 
         Catalogos.push(registroDelDia)
 
         localStorage.setItem("Catalogos", JSON.stringify(Catalogos))
+
+        Swal.fire({
+            title: "Perfecto, guardaste tu registro",
+            icon: "success"
+        });
     }
 })

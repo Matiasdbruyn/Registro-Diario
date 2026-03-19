@@ -3,11 +3,20 @@ let contenedorRegistro = document.getElementById("cajaResumen")
 let Catalogos = localStorage.getItem("Catalogos")
 Catalogos = JSON.parse(Catalogos)
 
-function renderRegistro(catalogoItems) {
-    catalogoItems.forEach(Catalogo => {
-        const cart = document.createElement("div")
-        cart.className = "contenedor"
-        cart.innerHTML = `<div class="resumenDatos">
+function renderRegistro() {
+        const ahora = Date.now();
+        const tiempo = 5000;
+        const registrosVivos = Catalogos.filter(cat => ahora - cat.creadoEn < tiempo);
+        localStorage.setItem("Catalogos", JSON.stringify(registrosVivos));
+
+        contenedorRegistro.innerHTML = "";
+
+        registrosVivos.forEach(Catalogo => {
+
+            const cart = document.createElement("div")
+            cart.className = "contenedor"
+
+            cart.innerHTML = `<div class="resumenDatos">
                         <ul>
                             <li><strong>Dia:</strong> ${Catalogo.dia}</li>
                             <li><strong>Fruta:</strong> ${Catalogo.frutas ? "Comiste frutas" : "No Comiste frutas"}</li>
@@ -18,34 +27,34 @@ function renderRegistro(catalogoItems) {
                         </ul>
                     </div>`
 
-        const resumenDatos = cart.querySelector(".resumenDatos")
+            const resumenDatos = cart.querySelector(".resumenDatos")
 
-        evaluarRegistro(Catalogo)
-            .then(() => {
-                const devolucionBien = document.createElement("div")
-                devolucionBien.className = "devolucionBien"
-                devolucionBien.innerHTML = `<h2>Habitos saludables</h2>
+            evaluarRegistro(Catalogo)
+                .then(() => {
+                    const devolucionBien = document.createElement("div")
+                    devolucionBien.className = "devolucionBien"
+                    devolucionBien.innerHTML = `<h2>Habitos saludables</h2>
                                             <img src="../img/correcto.png">`
-                resumenDatos.appendChild(devolucionBien)
-            })
-            .catch(() => {
-                const devolucionMal = document.createElement("div")
-                devolucionMal.className = "devolucionMal"
-                devolucionMal.innerHTML = `<h2>Habitos no saludables</h2>
+                    resumenDatos.appendChild(devolucionBien)
+                })
+                .catch(() => {
+                    const devolucionMal = document.createElement("div")
+                    devolucionMal.className = "devolucionMal"
+                    devolucionMal.innerHTML = `<h2>Habitos no saludables</h2>
                                             <img src="../img/mal.png">`
-                resumenDatos.appendChild(devolucionMal)
-            })
+                    resumenDatos.appendChild(devolucionMal)
+                })
 
-        setTimeout(() => {
-            cart.remove()
-            Swal.fire(`Ya paso un tiempo del registro: ${Catalogo.dia}`)
-        }, 3000)
+            contenedorRegistro.appendChild(cart)
 
-        contenedorRegistro.appendChild(cart)
-
-    })
-}
+        })
+    }
 renderRegistro(Catalogos)
+
+setInterval(() => {
+    let Catalogos = JSON.parse(localStorage.getItem("Catalogos")) || []
+    renderRegistro(Catalogos)
+}, 1000)
 
 function evaluarRegistro(registro) {
     return new Promise((resolve, reject) => {

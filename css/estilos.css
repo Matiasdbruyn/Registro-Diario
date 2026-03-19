@@ -238,9 +238,17 @@ footer h2 {
 
 #cajaregistro {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     height: 90vh;
+}
+
+#cajaregistro h2{
+font-family: "Zalando Sans SemiExpanded";
+    font-size: 40px;
+    font-weight: 500;
+    color: #fff;
 }
 
 #cajaregistro #cajaResumen {
